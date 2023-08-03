@@ -43,6 +43,8 @@ public class StockView extends JFrame{
         slotNumLabel = new JLabel("Enter slot to stock: ");
         slotNumLabel.setHorizontalAlignment(JLabel.CENTER);
 
+        slotNumTF = new JTextField(17);
+
         enterButton = new JButton("Enter");
         enterButton.setFocusable(false);
 
