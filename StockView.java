@@ -3,10 +3,20 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 
 public class StockView extends JFrame{
-    private JPanel headingPanel, viewInvPanel, slotNumPanel, buttonsPanel;
-    private JLabel  headingLabel, slotNumLabel;
-    private JButton viewInvBttn, enterButton, cancelButton;
+    private JPanel headingPanel;
+    private JPanel viewInvPanel;
+    private JPanel slotNumPanel;
+    private JPanel buttonsPanel;
+    
+    private JLabel  headingLabel;
+    private JLabel slotNumLabel;
+    
+    private JButton viewInvBttn;
+    private JButton enterButton;
+    private JButton cancelButton;
+    
     private JTextField slotNumTF;
+    
     private JTextArea invTxtArea;
 
     public StockView(){
@@ -75,6 +85,7 @@ public class StockView extends JFrame{
     public void setEnterBtnListener (ActionListener actionListener) {
         this.enterButton.addActionListener(actionListener);
     }
+    
     public void setCancelBtnListener (ActionListener actionListener) {
         this.cancelButton.addActionListener(actionListener);
     }
@@ -94,7 +105,6 @@ public class StockView extends JFrame{
     public String getSlotNumTF() {
         return this.slotNumTF.getText();
     }
-
 
     public void clearSlotNumTxtFld () {
         this.slotNumTF.setText("");
