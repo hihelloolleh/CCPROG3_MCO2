@@ -27,6 +27,7 @@ public class CreateVMView extends JFrame {
         setTitle("Create Vending Machine");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(450, 325);
+        setResizable(false);
         setLayout(new FlowLayout(FlowLayout.CENTER));
 
             //PANEL TO HOLD COMPONENTS
@@ -44,7 +45,7 @@ public class CreateVMView extends JFrame {
 
         capacityPanel = new JPanel();
         capacityPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
-        capacityPanel.setPreferredSize(new Dimension(350, 30));
+        capacityPanel.setPreferredSize(new Dimension(350, 50));
 
         buttonsPanel = new JPanel();
         buttonsPanel.setLayout(new GridLayout(1, 3, 10, 10));
@@ -62,7 +63,7 @@ public class CreateVMView extends JFrame {
         slotsLabel = new JLabel("Enter number of slots: ");
         slotsTF = new JTextField(10);
 
-        capacityLabel = new JLabel("Enter maximum capacity of each slot: ");
+        capacityLabel = new JLabel("Enter max capacity of each slot: ");
         capacityTF = new JTextField(10);
 
         clearButton = new JButton("Clear");
@@ -138,6 +139,4 @@ public class CreateVMView extends JFrame {
         this.slotsTF.setText("");
         this.capacityTF.setText("");
     }
-
-
 }
