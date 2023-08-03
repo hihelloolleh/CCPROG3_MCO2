@@ -4,9 +4,16 @@ import java.awt.event.ActionListener;
 
 public class TestMaintenanceView extends JFrame {
     private JLabel headingLabel;
-    private JPanel headingPanel, buttonsPanel;
-    private JButton stockBtn, changePriceBtn, collectMoneyBtn;
-    private JButton replenishMoneyBtn, printTransactionBtn, returnBtn;
+    
+    private JPanel headingPanel;
+    private JPanel buttonsPanel;
+    
+    private JButton stockButton;
+    private JButton changePriceButton;
+    private JButton collectMoneyButton;
+    private JButton replenishMoneyButton;
+    private JButton printTransactionButton;
+    private JButton returnButton;
 
     public TestMaintenanceView(){
         setTitle("Test Maintenance Features");
@@ -24,28 +31,28 @@ public class TestMaintenanceView extends JFrame {
         buttonsPanel = new JPanel();
         buttonsPanel.setLayout(new GridLayout(6, 1, 30, 10));
 
-        stockBtn = new JButton("Stock / Restock");
-        changePriceBtn = new JButton("Change Price");
-        collectMoneyBtn = new JButton("Collect Money");
-        replenishMoneyBtn = new JButton("Replenish Money");
-        printTransactionBtn = new JButton("Print Transaction Summary");
-        returnBtn = new JButton("Return to Test Vending Machine");
+        stockButton = new JButton("Stock / Restock");
+        changePriceButton = new JButton("Change Price");
+        collectMoneyButton = new JButton("Collect Money");
+        replenishMoneyButton = new JButton("Replenish Money");
+        printTransactionButton = new JButton("Print Transaction Summary");
+        returnButton = new JButton("Return");
 
-        stockBtn.setFocusable(false);
-        changePriceBtn.setFocusable(false);
-        collectMoneyBtn.setFocusable(false);
-        replenishMoneyBtn.setFocusable(false);
-        printTransactionBtn.setFocusable(false);
-        returnBtn.setFocusable(false);
+        stockButton.setFocusable(false);
+        changePriceButton.setFocusable(false);
+        collectMoneyButton.setFocusable(false);
+        replenishMoneyButton.setFocusable(false);
+        printTransactionButton.setFocusable(false);
+        returnButton.setFocusable(false);
 
         headingPanel.add(headingLabel);
 
-        buttonsPanel.add(stockBtn);
-        buttonsPanel.add(changePriceBtn);
-        buttonsPanel.add(collectMoneyBtn);
-        buttonsPanel.add(replenishMoneyBtn);
-        buttonsPanel.add(printTransactionBtn);
-        buttonsPanel.add(returnBtn);
+        buttonsPanel.add(stockButton);
+        buttonsPanel.add(changePriceButton);
+        buttonsPanel.add(collectMoneyButton);
+        buttonsPanel.add(replenishMoneyButton);
+        buttonsPanel.add(printTransactionButton);
+        buttonsPanel.add(returnButton);
 
         add(headingPanel);
         add(buttonsPanel, BorderLayout.CENTER);
@@ -53,24 +60,28 @@ public class TestMaintenanceView extends JFrame {
         setLocationRelativeTo(null); // Center the frame on the screen
         setVisible(true);
     }
+    
     public void setStockBtnListener (ActionListener actionListener) {
-        this.stockBtn.addActionListener(actionListener);
+        this.stockButton.addActionListener(actionListener);
     }
+    
     public void setChangePriceBtnListener (ActionListener actionListener) {
-        this.changePriceBtn.addActionListener(actionListener);
+        this.changePriceButton.addActionListener(actionListener);
     }
+    
     public void setCollectMoneyBtnListener (ActionListener actionListener) {
-        this.collectMoneyBtn.addActionListener(actionListener);
+        this.collectMoneyButton.addActionListener(actionListener);
     }
 
     public void setReplenishMoneyBtnListener (ActionListener actionListener) {
-        this.replenishMoneyBtn.addActionListener(actionListener);
+        this.replenishMoneyButton.addActionListener(actionListener);
     }
 
     public void setPrintTransactionBtnListener (ActionListener actionListener) {
-        this.printTransactionBtn.addActionListener(actionListener);
+        this.printTransactionButton.addActionListener(actionListener);
     }
+    
     public void setReturnBtnListener (ActionListener actionListener) {
-        this.returnBtn.addActionListener(actionListener);
+        this.returnButton.addActionListener(actionListener);
     }
 }
