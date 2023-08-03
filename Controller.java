@@ -55,7 +55,7 @@ public class Controller {
     public void openCreateMenu() { //CREATE VENDING MACHINE MENU
         createVMMenu = new CreateVMMenu();
 
-        // Create Regular VM Button
+            // Create Regular VM Button
         createVMMenu.setCreateRVMBttn(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
@@ -64,7 +64,7 @@ public class Controller {
             }
         });
 
-        // Create Special VM Button
+            // Create Special VM Button
         createVMMenu.setCreateSVMBttn(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 createVMMenu.dispose();
@@ -72,7 +72,7 @@ public class Controller {
             }
         });
 
-        // Return to Main Menu Button
+            // Return to Main Menu Button
         createVMMenu.setReturnButton(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 createVMMenu.dispose();
@@ -81,7 +81,7 @@ public class Controller {
         });
     }
 
-    // CREATE VENDING MACHINE
+        // CREATE VENDING MACHINE
     public void openCreateVM(String VMType) {
         createVMView = new CreateVMView();
 
@@ -90,14 +90,14 @@ public class Controller {
         else if (VMType.equalsIgnoreCase("Special"))
             createVMView.setHeadingLabel("Create Silog Vending Machine");
 
-        // Clear Button
+            // Clear Button
         createVMView.setClearButton(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 createVMView.clearTextFields();
             }
         });
 
-        // Create Button
+            // Create Button
         createVMView.setCreateButton(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
@@ -105,27 +105,45 @@ public class Controller {
                 int maxSlots;
                 int maxCapacity;
 
-                // Check if inputted maxSlots and maxCapacity are valid numbers
+                    //Check if vending machine name is valid
+                try{
+                    name = createVMView.getNameTFText();
+                    if (name.isEmpty()){
+                        JOptionPane.showOptionDialog(null, "Please enter the name of the vending machine.",
+                                "Invalid Input", JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE, null, null, 0);
+                        createVMView.clearTextFields();
+                    }
+                } catch (NullPointerException NPE){
+                    JOptionPane.showOptionDialog(null, "Please enter the name of the vending machine.",
+                            "Invalid Input", JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE, null, null, 0);
+                    createVMView.clearTextFields();
+                }
+
+                    // Check if inputted maxSlots and maxCapacity are valid numbers
                 try {
                     maxSlots = Integer.parseInt(createVMView.getSlotsTFText());
                     maxCapacity = Integer.parseInt(createVMView.getCapacityTFText());
 
                     // Check if maxSlots and maxCapacity reached the required minimum value
                     if (maxSlots < 8) {
-                        JOptionPane.showOptionDialog(null, "No. of slots should be more than 8", "Invalid Input", JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE, null, null, 0);
+                        JOptionPane.showOptionDialog(null, "No. of slots should be more than 8",
+                                "Invalid Input", JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE, null, null, 0);
+                        createVMView.clearTextFields();
+                    } else if (maxSlots > 15){
+                        JOptionPane.showOptionDialog(null, "No. of slots should be less than 14",
+                                "Invalid Input", JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE, null, null, 0);
                         createVMView.clearTextFields();
                     }
                     if (maxCapacity < 10) {
                         JOptionPane.showOptionDialog(null, "Capacity of each slot should be more than 10", "Invalid Input", JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE, null, null, 0);
                         createVMView.clearTextFields();
                     }
-
                 } catch (NumberFormatException exception) {
                     JOptionPane.showMessageDialog(null, "Invalid no. of slots or capacity input/s", "0", JOptionPane.ERROR_MESSAGE);
                     createVMView.clearTextFields();
                 }
 
-                // Create the Vending Machine
+                    // Create the Vending Machine
                 name = createVMView.getNameTFText();
                 maxSlots = Integer.parseInt(createVMView.getSlotsTFText());
                 maxCapacity = Integer.parseInt(createVMView.getCapacityTFText());
@@ -142,7 +160,7 @@ public class Controller {
                         specialVM.addSLot(maxCapacity);
                 }
 
-                // display feedback message that the Vending Machine is created
+                    // display feedback message that the Vending Machine is created
                 createVMView.setEnabledCreateButton(false);
                 JOptionPane.showOptionDialog(null, "Vending Machine Created!\n\nName: " + name + "\nNo. of Slots: " + maxSlots + "\nMax Capacity per Slot: " + maxCapacity, "Request Complete", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, null, 0);
                 createVMView.dispose();
@@ -150,12 +168,12 @@ public class Controller {
             }
         });
 
-        // Cancel Button
+            // Cancel Button
         createVMView.setCancelButton(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(null, "No vending machine created");
                 createVMView.dispose();
                 openCreateMenu();
-                ;
             }
         });
     }
@@ -169,7 +187,7 @@ public class Controller {
             public void actionPerformed(ActionEvent actionEvent) {
                 testVMMenu.dispose();
 
-                // Check which kind of Vending Machine was created
+                    // Check which kind of Vending Machine was created
                 if (regularVM != null && specialVM == null)
                     openTestVending("Regular");
                 else if (regularVM == null && specialVM != null)
@@ -177,16 +195,16 @@ public class Controller {
             }
         });
 
-        // Test Maintenance Features Button
+            // Test Maintenance Features Button
         testVMMenu.setMaintenanceBttn(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 testVMMenu.dispose();
-                // Check which kind of Vending Machine was created
+                    // Check which kind of Vending Machine was created
                 openTestMaintenance();
             }
         });
 
-        // Return to Main Menu
+            // Return to Main Menu
         testVMMenu.setReturnButton(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 testVMMenu.dispose();
@@ -198,14 +216,14 @@ public class Controller {
     // TEST VENDING FEATURES
     public void openTestVending(String VMType) {
         if (VMType.equalsIgnoreCase("Regular")) {
-            // If the instantiated VM is Regular
+                // If the instantiated VM is Regular
             testVMView = new TestVMView(regularVM);
 
-            // disable Add and View Button for regular Vending Machine
+                // disable Add and View Button for regular Vending Machine
             testVMView.setEnabledAddBtn(false);
             testVMView.setEnabledViewBtn(false);
 
-            // Coin Buttons (how customers will pay)
+                // Coin Buttons (how customers will pay)
             testVMView.setCoin20BListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     testVMView.setAmountTextAreaTA("20");
@@ -238,7 +256,7 @@ public class Controller {
                 }
             });
 
-            // Number Buttons (how customers select an item)
+                // Number Buttons (how customers select an item)
             testVMView.setButton1Listener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     testVMView.setItemTextAreaTA("1");
@@ -290,20 +308,20 @@ public class Controller {
                 }
             });
 
-            // Clear Button (when customer decides to retype their slot no. input)
+                // Clear Button (when customer decides to retype their slot no. input)
             testVMView.setClearBtnListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     testVMView.clearAmountTextAreaTA();
                 }
             });
 
-            // Enter Button (when customer decides to buy the item)
+                // Enter Button (when customer decides to buy the item)
             testVMView.setEnterBtnListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     int paymentAmount;
                     int selectedSlotNum;
 
-                    // Get the numerical value of inputs from text fields
+                        // Get the numerical value of inputs from text fields
                     paymentAmount = Integer.parseInt(testVMView.getAmountTextArea());
                     if (testVMView.getItemTextArea().equalsIgnoreCase(""))
                         selectedSlotNum = 0;
@@ -315,11 +333,11 @@ public class Controller {
                         JOptionPane.showOptionDialog(null, "Please insert money to use the Vending Machine",
                                 "Request Denied", JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE, null, null, 0);
                     } else if (paymentAmount > 0 && selectedSlotNum <= 0) {
-                        // If customer has not inputted a slot no. yet but has inserted money into the VM
+                            // If customer has not inputted a slot no. yet but has inserted money into the VM
                         JOptionPane.showOptionDialog(null, "Please choose an item to purchase",
                                 "Request Denied", JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE, null, null, 0);
                     } else if (paymentAmount <= 0 && selectedSlotNum <= 0) {
-                        // If both inputs are missing
+                            // If both inputs are missing
                         JOptionPane.showOptionDialog(null, "Please insert money and choose an item to purchase",
                                 "Request Denied", JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE, null, null, 0);
                     } else if (paymentAmount > 0 && selectedSlotNum > 0) {
@@ -408,6 +426,7 @@ public class Controller {
                         regularVM.getMoneyBox().subtractCoins(regularVM.getReceivedPayment().getNum20Coin(), regularVM.getReceivedPayment().getNum10Coin(), regularVM.getReceivedPayment().getNum5Coin(), regularVM.getReceivedPayment().getNum1Coin());
                         regularVM.getReceivedPayment().subtractCoins(regularVM.getReceivedPayment().getNum20Coin(), regularVM.getReceivedPayment().getNum10Coin(), regularVM.getReceivedPayment().getNum5Coin(), regularVM.getReceivedPayment().getNum1Coin());
                         testVMView.clearTextFields();
+                        testVMView.dispose();
                         openTestMenu();
                     } else {
                         testVMView.clearTextFields();
@@ -581,7 +600,9 @@ public class Controller {
                             if (dispensedChange.computeTotalAmount() == 0) {
                                 // If there should be change and the VM was not able to dispense change, then it has enough money in its moneyBox to provide change
                                 JOptionPane.showOptionDialog(null, "Vending Machine has insufficient money to provide change.", "Sorry for the inconvenience", JOptionPane.DEFAULT_OPTION, JOptionPane.ERROR_MESSAGE, null, null, 0);
-                                JOptionPane.showMessageDialog(null, "Returning...\n\nNo. of 20-peso coins: " + paymentMoney.getNum20Coin() + "\nNo of 10-peso coins: " + paymentMoney.getNum10Coin() + "\nNo of 5-peso coins: " + paymentMoney.getNum5Coin() + "\nNo of 1-peso coins: " + paymentMoney.getNum1Coin() + "\nTotal: " + paymentMoney.computeTotalAmount(), "", JOptionPane.PLAIN_MESSAGE);
+                                JOptionPane.showMessageDialog(null, "Returning...\n\nNo. of 20-peso coins: " + paymentMoney.getNum20Coin() + "\nNo of 10-peso coins: " +
+                                        paymentMoney.getNum10Coin() + "\nNo of 5-peso coins: " + paymentMoney.getNum5Coin() + "\nNo of 1-peso coins: " + paymentMoney.getNum1Coin() + "\nTotal: " +
+                                        paymentMoney.computeTotalAmount(), "", JOptionPane.PLAIN_MESSAGE);
                                 // Return money of customer
                                 specialVM.getMoneyBox().subtractCoins(paymentMoney.getNum20Coin(), paymentMoney.getNum10Coin(), paymentMoney.getNum5Coin(), paymentMoney.getNum1Coin());
                                 specialVM.getReceivedPayment().subtractCoins(paymentMoney.getNum20Coin(), paymentMoney.getNum10Coin(), paymentMoney.getNum5Coin(), paymentMoney.getNum1Coin()); // empty the received payment
@@ -591,12 +612,12 @@ public class Controller {
                                 }
                                 testVMView.clearTextFields();
                             } else {
-                                // Check if items in shopping cart are enough to make a Sundae
+                                // Check if items in shopping cart are enough to make a Silog meal
                                 if (specialVM.isPossibleForSilog()) {
-                                    // It is possible to make an Ice Cream Sundae with the items in the cart
-                                    int sundaePrice = specialVM.computeTotalPriceOfCart();
-                                    int sundaeCalories = specialVM.computeTotalCaloriesOfCart();
-                                    dispensedCustomItem = new Silog("Sundae", sundaePrice, sundaeCalories, specialVM.getShoppingCart());
+                                    // It is possible to make a Silog Meal with the items in the cart
+                                    int silogPrice = specialVM.computeTotalPriceOfCart();
+                                    int silogCalories = specialVM.computeTotalCaloriesOfCart();
+                                    dispensedCustomItem = new Silog("Silog", silogPrice, silogCalories, specialVM.getShoppingCart());
 
                                     // Ask which container to use
                                     String[] buttons = {"Plate", "Tupperware"};
@@ -604,7 +625,7 @@ public class Controller {
                                     container = JOptionPane.showOptionDialog(null, "Select a container for your Silog",
                                             "Silog Container", JOptionPane.QUESTION_MESSAGE, 0, null, buttons, buttons[0]);
 
-                                    // Prepare and dispense Sundae
+                                    // Prepare and dispense Siilog
                                     dispensedCustomItem = specialVM.makeSilogMeal();
                                     JOptionPane.showMessageDialog(null, dispensedCustomItem.toStringPreparation(container), "Please wait...", JOptionPane.PLAIN_MESSAGE);
                                     JOptionPane.showMessageDialog(null, "Dispensing Silog!\n\n" + dispensedCustomItem.toString(), "Enjoy!", JOptionPane.PLAIN_MESSAGE);
@@ -624,7 +645,7 @@ public class Controller {
                                     // empty Shopping cart
                                     specialVM.getShoppingCart().clear();
                                 } else {
-                                    // It is not possible to make an Ice Cream Sundae with the items in the cart
+                                    // It is not possible to make a Silog Meal with the items in the cart
                                     StringBuilder sb = new StringBuilder();
                                     int i = 1;
                                     for (Item item : specialVM.getShoppingCart()) {
@@ -635,7 +656,7 @@ public class Controller {
                                     }
 
                                     // dispense item/s and change
-                                    JOptionPane.showConfirmDialog(null, "Item/s in shopping cart is/are insufficient to make a custom Ice Cream Sundae. Item/s will be dispensed individually.", "Take note!", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE);
+                                    JOptionPane.showConfirmDialog(null, "Item/s in shopping cart is/are insufficient to make a custom Silog Meal. Item/s will be dispensed individually.", "Take note!", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE);
                                     JOptionPane.showMessageDialog(null, sb.toString(), "Enjoy!", JOptionPane.PLAIN_MESSAGE);
                                     JOptionPane.showMessageDialog(null, "Dispensing Change...\n\nNo. of 20-peso coins: " + dispensedChange.getNum20Coin() + "\nNo of 10-peso coins: " + dispensedChange.getNum10Coin() + "\nNo of 5-peso coins: " + dispensedChange.getNum5Coin() + "\nNo of 1-peso coins: " + dispensedChange.getNum1Coin() + "\nTotal: " + dispensedChange.computeTotalAmount(), "", JOptionPane.PLAIN_MESSAGE);
                                     // empty Shopping cart
@@ -646,22 +667,22 @@ public class Controller {
                         } else if (paymentAmount == specialVM.computeTotalPriceOfCart()) {
                             // When payment is exact and there is no need to dispense change
 
-                            // Check if items in shopping cart are enough to make a Sundae
+                            // Check if items in shopping cart are enough to make a Silog
                             if (specialVM.isPossibleForSilog()) {
-                                // It is possible to make an Ice Cream Sundae with the items in the cart
+                                // It is possible to make a Silog meal with the items in the cart
                                 int silogPrice = specialVM.computeTotalPriceOfCart();
                                 int silogCalories = specialVM.computeTotalCaloriesOfCart();
-                                dispensedCustomItem = new Silog("Sundae", silogPrice, silogCalories, specialVM.getShoppingCart());
+                                dispensedCustomItem = new Silog("Silog", silogPrice, silogCalories, specialVM.getShoppingCart());
 
                                 // Ask which container to use
                                 String[] buttons = {"Ice Cream Cone", "Paper Cup"};
                                 int container;
-                                container = JOptionPane.showOptionDialog(null, "Select a container for your Ice Cream Sundae", "Sundae Container", JOptionPane.QUESTION_MESSAGE, 0, null, buttons, buttons[0]);
+                                container = JOptionPane.showOptionDialog(null, "Select a container for your Silog meal", "Silog Container", JOptionPane.QUESTION_MESSAGE, 0, null, buttons, buttons[0]);
 
-                                // Prepare and dispense Sundae
+                                // Prepare and dispense Silog
                                 dispensedCustomItem = specialVM.makeSilogMeal();
                                 JOptionPane.showMessageDialog(null, dispensedCustomItem.toStringPreparation(container), "Please wait...", JOptionPane.PLAIN_MESSAGE);
-                                JOptionPane.showMessageDialog(null, "Dispensing Ice Cream Sundae!\n\n" + dispensedCustomItem.toString(), "Enjoy!", JOptionPane.PLAIN_MESSAGE);
+                                JOptionPane.showMessageDialog(null, "Dispensing Silog\n\n" + dispensedCustomItem.toString(), "Enjoy!", JOptionPane.PLAIN_MESSAGE);
 
                                 // Add transaction
                                 for (Item selectedItem : specialVM.getShoppingCart()) {
@@ -676,7 +697,7 @@ public class Controller {
                                 // empty Shopping cart
                                 specialVM.getShoppingCart().clear();
                             } else {
-                                // It is not possible to make an Ice Cream Sundae with the items in the cart
+                                // It is not possible to make a Silog meal with the items in the cart
                                 StringBuilder sb = new StringBuilder();
                                 int i = 1;
                                 for (Item item : specialVM.getShoppingCart()) {
@@ -687,7 +708,7 @@ public class Controller {
                                 }
 
                                 // dispense item/s
-                                JOptionPane.showConfirmDialog(null, "Item/s in shopping cart is/are insufficient to make a custom Ice Cream Sundae. Item/s will be dispensed individually.", "Take note!", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE);
+                                JOptionPane.showConfirmDialog(null, "Item/s in shopping cart is/are insufficient to make a custom Silog meal. Item/s will be dispensed individually.", "Take note!", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE);
                                 JOptionPane.showMessageDialog(null, sb.toString(), "Enjoy!", JOptionPane.PLAIN_MESSAGE);
                                 // empty Shopping cart
                                 specialVM.getShoppingCart().clear();
@@ -720,10 +741,12 @@ public class Controller {
                         specialVM.getMoneyBox().subtractCoins(specialVM.getReceivedPayment().getNum20Coin(), specialVM.getReceivedPayment().getNum10Coin(), specialVM.getReceivedPayment().getNum5Coin(), specialVM.getReceivedPayment().getNum1Coin());
                         specialVM.getReceivedPayment().subtractCoins(specialVM.getReceivedPayment().getNum20Coin(), specialVM.getReceivedPayment().getNum10Coin(), specialVM.getReceivedPayment().getNum5Coin(), specialVM.getReceivedPayment().getNum1Coin());
                         testVMView.clearTextFields();
+                        testVMView.dispose();
                         openTestMenu();
                     } else {
                         testVMView.clearTextFields();
                         testVMMenu.dispose();
+                        testVMView.dispose();
                         openTestMenu();
                     }
                 }
@@ -747,6 +770,7 @@ public class Controller {
                     openStock("Special");
             }
         });
+
         // Change Price Button
         testMaintenanceView.setChangePriceBtnListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -808,25 +832,25 @@ public class Controller {
         });
     }
 
-    // STOCK / RESTOCK
+        // STOCK / RESTOCK
     public void openStock (String VMType) {
         stockView = new StockView();
 
         if (VMType.equalsIgnoreCase("Regular")) {
             // If the instantiated VM is Regular
 
-            // View Inventory Button
+                // View Inventory Button
             stockView.setViewInvBtnListener(new ActionListener() {
                 public void actionPerformed (ActionEvent e) {
                     String inventoryString = "Slot No.               Item               Price (PHP)              Quantity\n";
                     for (Slot slot : regularVM.getSlots()) {
                         if (!slot.isEmpty()) {
-                            inventoryString += slot.getSlotNumber() + "                 " +
-                                    slot.getItems().get(0).getName() + "                 " +
+                            inventoryString += (slot.getSlotNumber() + 1) + "                 " +
+                                    slot.getItems().get(0).getName() + "                     " +
                                     slot.getItems().get(0).getPrice() + "                 " +
                                     slot.getItems().size() + " / " + slot.getMaxCapacity() + "\n";
                         } else {
-                            inventoryString += slot.getSlotNumber() + "\n";
+                            inventoryString += (slot.getSlotNumber() + 1) + "\n";
                         }
                     }
 
@@ -834,15 +858,15 @@ public class Controller {
                 }
             });
 
-            // Enter Button
+                // Enter Button
             stockView.setEnterBtnListener(new ActionListener() {
                 public void actionPerformed (ActionEvent e) {
                     int selectedSlotNum;
 
-                    // record ending inventory
+                        // record ending inventory
                     regularVM.recordEndInventory();
 
-                    // Check if the inputted slot no. is valid
+                        // Check if the inputted slot no. is valid
                     try {
                         selectedSlotNum = Integer.parseInt(stockView.getSlotNumTF());
 
@@ -858,25 +882,25 @@ public class Controller {
                     selectedSlotNum = Integer.parseInt(stockView.getSlotNumTF());
 
                     if (!regularVM.getSlots().get(selectedSlotNum - 1).isEmpty()) {
-                        // If slot selected is empty
+                            // If slot selected is empty
                         Item addItem = regularVM.getSlots().get(selectedSlotNum - 1).getItems().get(0);
                         String quantityString;
                         int quantity;
 
-                        // Ask user to input quantity of items to stock
+                            // Ask user to input quantity of items to stock
                         quantityString = JOptionPane.showInputDialog("Enter quantity of items to stock");
                         quantity = Integer.parseInt(quantityString);
 
-                        // Check if there are excess items
+                            // Check if there are excess items
                         int slotCapacity = regularVM.getSlots().get(selectedSlotNum - 1).getMaxCapacity();
                         int numOfItems   = regularVM.getSlots().get(selectedSlotNum - 1).getItems().size();
                         int excess = (numOfItems + quantity) - slotCapacity;
                         if (excess > 0) {
-                            // If the quantity of items did not exceed slot capacity
+                                // If the quantity of items did not exceed slot capacity
                             regularVM.stock(selectedSlotNum, addItem, quantity);
                             stockView.clearSlotNumTxtFld();
                         } else {
-                            // If the quantity of items exceed slot capacity
+                                // If the quantity of items exceed slot capacity
                             JOptionPane.showMessageDialog(null, "Quantity of items exceeds slot capacity. Excess items will not be added.", "Too many!", JOptionPane.ERROR_MESSAGE);
                             quantity = regularVM.getSlots().get(selectedSlotNum - 1).getMaxCapacity() - regularVM.getSlots().get(selectedSlotNum - 1).getItems().size();
                             regularVM.stock(selectedSlotNum, addItem, quantity);
@@ -884,12 +908,12 @@ public class Controller {
                             stockView.clearSlotNumTxtFld();
                         }
                     }else {
-                        // If slot selected is not empty
+                            // If slot selected is not empty
                         Item addItem;
                         String itemName, itemPriceString, itemCalString, quantityString;
                         int itemPrice, itemCal, quantity;
 
-                        // Ask user for item name, price, calories, and the quantity to add
+                            // Ask user for item name, price, calories, and the quantity to add
                         itemName        = JOptionPane.showInputDialog("Enter name of item to add: ");
                         itemPriceString = JOptionPane.showInputDialog("Enter price of item to add: ");
                         itemCalString   = JOptionPane.showInputDialog("Enter no. of calories of item to add: ");
@@ -907,7 +931,7 @@ public class Controller {
                 }
             });
 
-            // Cancel Button
+                // Cancel Button
             stockView.setCancelBtnListener(new ActionListener() {
                 public void actionPerformed (ActionEvent e) {
                     // record starting inventory
@@ -1026,7 +1050,7 @@ public class Controller {
         }
     }
 
-    // CHANGE PRICE
+        // CHANGE PRICE
     public void openChangePrice (String VMType) {
         changePriceView = new ChangePriceView();
 
@@ -1425,7 +1449,6 @@ public class Controller {
 
     // PRINT TRANSACTIONS
     public void openPrintTransactions (String VMType) {
-
         if (VMType.equalsIgnoreCase("Regular")) {
             // If the instantiated VM is Regular
 
@@ -1445,7 +1468,6 @@ public class Controller {
             JOptionPane.showMessageDialog(null, specialVM.printStartingInventory(), "Starting Inventory Printed!", JOptionPane.PLAIN_MESSAGE);
             // Print Transaction Log
             JOptionPane.showMessageDialog(null, specialVM.printTransactionLog(), "Transaction Summary Printed!", JOptionPane.PLAIN_MESSAGE);
-
         }
     }
 }
