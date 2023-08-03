@@ -3,9 +3,18 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 
 public class ChangePriceView extends JFrame{
-    private JPanel headingPanel, viewPricePanel, itemPanel, buttonsPanel;
-    private JLabel  headingLabel, itemLabel;
-    private JButton viewPriceBttn, enterButton, cancelButton;
+    private JPanel headingPanel;
+    private JPanel viewPricePanel;
+    private JPanel itemPanel;
+    private JPanel buttonsPanel;
+
+    private JLabel  headingLabel;
+    private JLabel itemLabel;
+    
+    private JButton viewPriceButton;
+    private JButton enterButton;
+    private JButton cancelButton;
+    
     private JTextField itemTF;
     private JTextArea viewPricesArea;
 
@@ -38,7 +47,7 @@ public class ChangePriceView extends JFrame{
         viewPricesArea.setPreferredSize(new Dimension(400, 240));
         viewPricesArea.setEditable(false);
 
-        viewPriceBttn = new JButton("View Prices");
+        viewPriceButton = new JButton("View Prices");
 
         itemLabel = new JLabel("Enter item to change price: ");
         itemLabel.setHorizontalAlignment(JLabel.CENTER);
@@ -52,7 +61,7 @@ public class ChangePriceView extends JFrame{
         cancelButton.setFocusable(false);
 
         headingPanel.add(headingLabel);
-        viewPricePanel.add(viewPriceBttn);
+        viewPricePanel.add(viewPriceButton);
         itemPanel.add(itemLabel);
         itemPanel.add(itemTF);
         buttonsPanel.add(enterButton);
@@ -69,7 +78,7 @@ public class ChangePriceView extends JFrame{
     }
 
     public void setViewPriceBtnListener (ActionListener actionListener) {
-        this.viewPriceBttn.addActionListener(actionListener);
+        this.viewPriceButton.addActionListener(actionListener);
     }
 
     public void setEnterBtnListener (ActionListener actionListener) {
@@ -88,12 +97,10 @@ public class ChangePriceView extends JFrame{
         this.viewPricesArea.setText(text);
     }
 
-
     public String getItemTF() {
         return this.itemTF.getText();
     }
-
-
+    
     public void clearItemTxtFld () {
         this.itemTF.setText("");
     }
