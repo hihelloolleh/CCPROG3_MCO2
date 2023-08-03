@@ -3,11 +3,26 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 
 public class ReplenishMoneyView extends JFrame{
-    private JLabel headingLabel, coin20BLabel, coin10BLabel, coin5BLabel, coin1BLabel;
-    private JPanel headingPanel, viewPanel, moneyPanel, buttonPanel;
-    private JTextField coin20BTF, coin10BTF, coin5BTF, coin1BTF;
+    private JLabel headingLabel;
+    private JLabel coin20BLabel;
+    private JLabel coin10BLabel;
+    private JLabel coin5BLabel;
+    private JLabel coin1BLabel;
+
+    private JPanel headingPanel;
+    private JPanel viewPanel;
+    private JPanel moneyPanel;
+    private JPanel buttonPanel;
+
+    private JTextField coin20BTF;
+    private JTextField coin10BTF;
+    private JTextField coin5BTF;
+    private JTextField coin1BTF;
+
     private JTextArea displayTextArea;
-    private JButton viewButton, enterButton, backButton;
+    private JButton viewButton;
+    private JButton enterButton;
+    private JButton backButton;
 
     public ReplenishMoneyView(){
         setTitle("Replenish Money");
