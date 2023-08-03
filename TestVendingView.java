@@ -4,21 +4,45 @@ import java.awt.event.ActionListener;
 
 public class TestVendingView extends JFrame {
     private JLabel vmNameLabel;
-    private JPanel vmNamePanel, slotsPanel, inputPanel, moneyPanel;
+    
+    private JPanel vmNamePanel;
+    private JPanel slotsPanel;
+    private JPanel moneyPanel;
+    private JPanel inputPanel;
+    private JPanel numButtonPanel;
+    private JPanel blankPanel1;
+    private JPanel confirmPanel;
+    private JPanel blankPanel2;
+    private JPanel  insertMoneyPanel;
+    private JPanel moneyButtonsPanel;
 
-    private JLabel amountLabel, itemLabel;
-    private JPanel numBtnPanel, blankPanel1;
-    private JTextArea amountTextArea, itemTextArea;
-    private JButton button_1, button_2, button_3, button_4, button_5;
-    private JButton button_6, button_7, button_8, button_9, button_0;
-
-    private JPanel  confirmPanel, blankPanel_2;
-    private JButton clearBtn, enterBtn, cancelBtn, addBtn, viewBtn;
-
+    private JLabel amountLabel;
+    private JLabel itemLabel;
     private JLabel  insertMoneyLabel;
-    private JPanel  insertMoneyPanel, moneyBtnsPanel;
-    private JButton money20Btn, money10Btn, money5Btn, money1Btn;
-
+    
+    private JTextArea amountTextArea;
+    private JTextArea itemTextArea;
+    
+    private JButton button1;
+    private JButton button2;
+    private JButton button3;
+    private JButton button4;
+    private JButton button5;
+    private JButton button6;
+    private JButton button7;
+    private JButton button8;
+    private JButton button9;
+    private JButton button0;
+    private JButton clearButton;
+    private JButton enterButton;
+    private JButton cancelButton;
+    private JButton addButton;
+    private JButton viewButton;
+    private JButton coin20Button;
+    private JButton coin10Button;
+    private JButton coin5Button;
+    private JButton coin1Button;
+    
     public TestVendingView (RegVendingMachine vendingMachine) {
         setTitle("Test Regular Vending Features");
         setSize(680, 725);
@@ -119,53 +143,53 @@ public class TestVendingView extends JFrame {
         inputPanel.add(blankPanel1);
 
         // Create panel to hold number buttons
-        numBtnPanel = new JPanel();
-        numBtnPanel.setPreferredSize(new Dimension(230, 200));
-        numBtnPanel.setLayout(new GridLayout(4, 3, 10, 10));
+        numButtonPanel = new JPanel();
+        numButtonPanel.setPreferredSize(new Dimension(230, 200));
+        numButtonPanel.setLayout(new GridLayout(4, 3, 10, 10));
 
         // Create number buttons
-        button_1 = new JButton("1");
-        button_2 = new JButton("2");
-        button_3 = new JButton("3");
-        button_4 = new JButton("4");
-        button_5 = new JButton("5");
-        button_6 = new JButton("6");
-        button_7 = new JButton("7");
-        button_8 = new JButton("8");
-        button_9 = new JButton("9");
-        button_0 = new JButton("0");
-        addBtn   = new JButton("Add");
-        viewBtn  = new JButton("View");
-        button_1.setFocusable(false);
-        button_2.setFocusable(false);
-        button_3.setFocusable(false);
-        button_4.setFocusable(false);
-        button_5.setFocusable(false);
-        button_6.setFocusable(false);
-        button_7.setFocusable(false);
-        button_8.setFocusable(false);
-        button_9.setFocusable(false);
-        button_0.setFocusable(false);
-        addBtn.setFocusable(false);
-        viewBtn.setFocusable(false);
-        numBtnPanel.add(button_1);
-        numBtnPanel.add(button_2);
-        numBtnPanel.add(button_3);
-        numBtnPanel.add(button_4);
-        numBtnPanel.add(button_5);
-        numBtnPanel.add(button_6);
-        numBtnPanel.add(button_7);
-        numBtnPanel.add(button_8);
-        numBtnPanel.add(button_9);
-        numBtnPanel.add(button_0);
-        numBtnPanel.add(addBtn);
-        numBtnPanel.add(viewBtn);
-        inputPanel.add(numBtnPanel);
+        button1 = new JButton("1");
+        button2 = new JButton("2");
+        button3 = new JButton("3");
+        button4 = new JButton("4");
+        button5 = new JButton("5");
+        button6 = new JButton("6");
+        button7 = new JButton("7");
+        button8 = new JButton("8");
+        button9 = new JButton("9");
+        button0 = new JButton("0");
+        addButton = new JButton("Add");
+        viewButton = new JButton("View");
+        button1.setFocusable(false);
+        button2.setFocusable(false);
+        button3.setFocusable(false);
+        button4.setFocusable(false);
+        button5.setFocusable(false);
+        button6.setFocusable(false);
+        button7.setFocusable(false);
+        button8.setFocusable(false);
+        button9.setFocusable(false);
+        button0.setFocusable(false);
+        addButton.setFocusable(false);
+        viewButton.setFocusable(false);
+        numButtonPanel.add(button1);
+        numButtonPanel.add(button2);
+        numButtonPanel.add(button3);
+        numButtonPanel.add(button4);
+        numButtonPanel.add(button5);
+        numButtonPanel.add(button6);
+        numButtonPanel.add(button7);
+        numButtonPanel.add(button8);
+        numButtonPanel.add(button9);
+        numButtonPanel.add(button0);
+        numButtonPanel.add(addButton);
+        numButtonPanel.add(viewButton);
+        inputPanel.add(numButtonPanel);
 
         // Create panel to separate the number and confirmation buttons buttons
-        blankPanel_2 = new JPanel();
-        blankPanel_2.setPreferredSize(new Dimension(230, 20));
-        inputPanel.add(blankPanel_2);
+        blankPanel2 = new JPanel();
+        blankPanel2.setPreferredSize(new Dimension(230, 20));
+        inputPanel.add(blankPanel2);
 
 
         // Create panel to hold Clear, Enter, and Cancel Buttons
@@ -174,15 +198,15 @@ public class TestVendingView extends JFrame {
         confirmPanel.setLayout(new GridLayout(1, 3, 5, 5));
 
         // Create confirmation buttons
-        clearBtn  = new JButton("Clear");
-        enterBtn  = new JButton("Enter");
-        cancelBtn = new JButton("Cancel");
-        clearBtn.setFocusable(false);
-        enterBtn.setFocusable(false);
-        cancelBtn.setFocusable(false);
-        confirmPanel.add(clearBtn);
-        confirmPanel.add(enterBtn);
-        confirmPanel.add(cancelBtn);
+        clearButton = new JButton("Clear");
+        enterButton = new JButton("Enter");
+        cancelButton = new JButton("Cancel");
+        clearButton.setFocusable(false);
+        enterButton.setFocusable(false);
+        cancelButton.setFocusable(false);
+        confirmPanel.add(clearButton);
+        confirmPanel.add(enterButton);
+        confirmPanel.add(cancelButton);
         inputPanel.add(confirmPanel);
 
         // Create panel to hold customer's money section
@@ -199,29 +223,29 @@ public class TestVendingView extends JFrame {
         insertMoneyLabel = new JLabel("Insert money (PHP): ");
         insertMoneyPanel.add(insertMoneyLabel);
         // Create panel to hold money denomination buttons
-        moneyBtnsPanel = new JPanel();
-        moneyBtnsPanel.setLayout(new GridLayout(1, 4, 10, 0));
-        moneyBtnsPanel.setPreferredSize(new Dimension(645, 55));
+        moneyButtonsPanel = new JPanel();
+        moneyButtonsPanel.setLayout(new GridLayout(1, 4, 10, 0));
+        moneyButtonsPanel.setPreferredSize(new Dimension(645, 55));
 
         // Create buttons for each denomination
-        money20Btn = new JButton("20");
-        money10Btn = new JButton("10");
-        money5Btn  = new JButton("5");
-        money1Btn  = new JButton("1");
-        money20Btn.setFocusable(false);
-        money10Btn.setFocusable(false);
-        money5Btn.setFocusable(false);
-        money1Btn.setFocusable(false);
+        coin20Button = new JButton("20");
+        coin10Button = new JButton("10");
+        coin5Button = new JButton("5");
+        coin1Button = new JButton("1");
+        coin20Button.setFocusable(false);
+        coin10Button.setFocusable(false);
+        coin5Button.setFocusable(false);
+        coin1Button.setFocusable(false);
 
         // Add buttons to moneyBtsPanel
-        moneyBtnsPanel.add(money20Btn);
-        moneyBtnsPanel.add(money10Btn);
-        moneyBtnsPanel.add(money5Btn);
-        moneyBtnsPanel.add(money1Btn);
+        moneyButtonsPanel.add(coin20Button);
+        moneyButtonsPanel.add(coin10Button);
+        moneyButtonsPanel.add(coin5Button);
+        moneyButtonsPanel.add(coin1Button);
 
         // Add components to moneyPanel
         moneyPanel.add(insertMoneyPanel);
-        moneyPanel.add(moneyBtnsPanel, BorderLayout.CENTER);
+        moneyPanel.add(moneyButtonsPanel, BorderLayout.CENTER);
 
 
         // add panels to frame
@@ -235,98 +259,98 @@ public class TestVendingView extends JFrame {
         setVisible(true);
     }
 
-    // set Number Buttons
+        // set Number Buttons
     public void setButton1Listener (ActionListener actionListener) {
-        this.button_1.addActionListener(actionListener);
+        this.button1.addActionListener(actionListener);
     }
 
     public void setButton2Listener (ActionListener actionListener) {
-        this.button_2.addActionListener(actionListener);
+        this.button2.addActionListener(actionListener);
     }
 
     public void setButton3Listener (ActionListener actionListener) {
-        this.button_3.addActionListener(actionListener);
+        this.button3.addActionListener(actionListener);
     }
 
     public void setButton4Listener (ActionListener actionListener) {
-        this.button_4.addActionListener(actionListener);
+        this.button4.addActionListener(actionListener);
     }
 
     public void setButton5Listener (ActionListener actionListener) {
-        this.button_5.addActionListener(actionListener);
+        this.button5.addActionListener(actionListener);
     }
 
     public void setButton6Listener (ActionListener actionListener) {
-        this.button_6.addActionListener(actionListener);
+        this.button6.addActionListener(actionListener);
     }
 
     public void setButton7Listener (ActionListener actionListener) {
-        this.button_7.addActionListener(actionListener);
+        this.button7.addActionListener(actionListener);
     }
 
     public void setButton8Listener (ActionListener actionListener) {
-        this.button_8.addActionListener(actionListener);
+        this.button8.addActionListener(actionListener);
     }
 
     public void setButton9Listener (ActionListener actionListener) {
-        this.button_9.addActionListener(actionListener);
+        this.button9.addActionListener(actionListener);
     }
 
     public void setButton0Listener (ActionListener actionListener) {
-        this.button_0.addActionListener(actionListener);
+        this.button0.addActionListener(actionListener);
     }
 
 
-    // add button (for Special)
+        // add button (for Special)
     public void setAddBtnListener (ActionListener actionListener) {
-        this.addBtn.addActionListener(actionListener);
+        this.addButton.addActionListener(actionListener);
     }
 
     public void setEnabledAddBtn (boolean setEnabled) {
-        this.addBtn.setEnabled(setEnabled);
+        this.addButton.setEnabled(setEnabled);
     }
 
-    // view button (for Special)
+        // view button (for Special)
     public void setViewBtnListener (ActionListener actionListener) {
-        this.viewBtn.addActionListener(actionListener);
+        this.viewButton.addActionListener(actionListener);
     }
 
     public void setEnabledViewBtn (boolean setEnabled) {
-        this.viewBtn.setEnabled(setEnabled);
+        this.viewButton.setEnabled(setEnabled);
     }
 
-    // set Confirmation Buttons
+        // set Confirmation Buttons
     public void setClearBtnListener (ActionListener actionListener) {
-        this.clearBtn.addActionListener(actionListener);
+        this.clearButton.addActionListener(actionListener);
     }
 
     public void setEnterBtnListener (ActionListener actionListener) {
-        this.enterBtn.addActionListener(actionListener);
+        this.enterButton.addActionListener(actionListener);
     }
 
     public void setCancelBtnListener (ActionListener actionListener) {
-        this.cancelBtn.addActionListener(actionListener);
+        this.cancelButton.addActionListener(actionListener);
     }
 
-    // set Money Buttons
+        // set Money Buttons
     public void setMoney20BtnListener (ActionListener actionListener) {
-        this.money20Btn.addActionListener(actionListener);
+        this.coin20Button.addActionListener(actionListener);
     }
 
     public void setMoney10BtnListener (ActionListener actionListener) {
-        this.money10Btn.addActionListener(actionListener);
+        this.coin10Button.addActionListener(actionListener);
     }
 
     public void setMoney5BtnListener (ActionListener actionListener) {
-        this.money5Btn.addActionListener(actionListener);
+        this.coin5Button.addActionListener(actionListener);
     }
 
     public void setMoney1BtnListener (ActionListener actionListener) {
-        this.money1Btn.addActionListener(actionListener);
+        this.coin1Button.addActionListener(actionListener);
     }
 
 
-    // Text Fields/Areas
+        // Text Fields/Areas
     public String getAmountTextArea () {
         return this.amountTextArea.getText();
     }
@@ -347,7 +371,7 @@ public class TestVendingView extends JFrame {
     }
 
 
-    // Clear text fields
+        // Clear text fields
     public void clearAmountTextAreaTA () {
         this.amountTextArea.setText("0");
     }
@@ -360,6 +384,4 @@ public class TestVendingView extends JFrame {
         this.amountTextArea.setText("0");
         this.itemTextArea.setText("");
     }
-
-
 }
