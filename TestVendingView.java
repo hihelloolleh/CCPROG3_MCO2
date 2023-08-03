@@ -4,7 +4,7 @@ import java.awt.event.ActionListener;
 
 public class TestVendingView extends JFrame {
     private JLabel vmNameLabel;
-    
+
     private JPanel vmNamePanel;
     private JPanel slotsPanel;
     private JPanel moneyPanel;
@@ -19,10 +19,10 @@ public class TestVendingView extends JFrame {
     private JLabel amountLabel;
     private JLabel itemLabel;
     private JLabel  insertMoneyLabel;
-    
+
     private JTextArea amountTextArea;
     private JTextArea itemTextArea;
-    
+
     private JButton button1;
     private JButton button2;
     private JButton button3;
@@ -42,7 +42,7 @@ public class TestVendingView extends JFrame {
     private JButton coin10Button;
     private JButton coin5Button;
     private JButton coin1Button;
-    
+
     public TestVendingView (RegVendingMachine vendingMachine) {
         setTitle("Test Regular Vending Features");
         setSize(680, 725);
@@ -65,7 +65,7 @@ public class TestVendingView extends JFrame {
         slotsPanel.setBackground(Color.WHITE);
 
         for (int i = 0; i < vendingMachine.getMaxSlots(); i++) {
-            // Create panel to hold the slot components
+                // Create panel to hold the slot components
             JPanel slotPanel = new JPanel();
             slotPanel.setPreferredSize(new Dimension(130, 100));
             slotPanel.setBackground(Color.LIGHT_GRAY);
@@ -76,11 +76,11 @@ public class TestVendingView extends JFrame {
             JLabel slotNumLabel = new JLabel(String.valueOf(i + 1));
             slotNumPanel.add(slotNumLabel);
 
-            // Components for displaying item names
+                // Components for displaying item names
             JPanel itemNamePanel = new JPanel();
             itemNamePanel.setPreferredSize(new Dimension(125, 18));
             itemNamePanel.setBackground(Color.LIGHT_GRAY);
-            // JLabel itemNameLabel = new JLabel("Product Name");  // to test
+                // JLabel itemNameLabel = new JLabel("Product Name");  // to test
             JLabel itemNameLabel = new JLabel();
             if (vendingMachine.getSlots().get(i).isEmpty())
                 itemNameLabel.setText(" ");
@@ -88,11 +88,11 @@ public class TestVendingView extends JFrame {
                 itemNameLabel.setText(vendingMachine.getSlots().get(i).getItems().get(0).getName());
             itemNamePanel.add(itemNameLabel);
 
-            // Components for displaying item calories
+                // Components for displaying item calories
             JPanel itemCalPanel = new JPanel();
             itemCalPanel.setPreferredSize(new Dimension(125, 18));
             itemCalPanel.setBackground(Color.LIGHT_GRAY);
-            // JLabel itemCalLabel = new JLabel("Calories: 123");  // to test
+                // JLabel itemCalLabel = new JLabel("Calories: 123");  // to test
             JLabel itemCalLabel = new JLabel();
             if (vendingMachine.getSlots().get(i).isEmpty())
                 itemCalLabel.setText("<empty>");
@@ -100,7 +100,7 @@ public class TestVendingView extends JFrame {
                 itemCalLabel.setText("Calories: " + vendingMachine.getSlots().get(i).getItems().get(0).getCalories());
             itemCalPanel.add(itemCalLabel);
 
-            // Components in displaying item prices
+                // Components in displaying item prices
             JPanel itemPricePanel = new JPanel();
             itemPricePanel.setPreferredSize(new Dimension(125, 18));
             itemPricePanel.setBackground(Color.LIGHT_GRAY);
@@ -120,7 +120,7 @@ public class TestVendingView extends JFrame {
             slotsPanel.add(slotPanel);
         }
 
-        // Create text field to display the amount of money being inserted into the VM
+            // Create text field to display the amount of money being inserted into the VM
         amountLabel = new JLabel("Received Payment: ");
         inputPanel.add(amountLabel);
         amountTextArea = new JTextArea("0");
@@ -128,7 +128,7 @@ public class TestVendingView extends JFrame {
         amountTextArea.setEditable(false);
         inputPanel.add(amountTextArea);
 
-        // Create text field to display the selected item to purchase
+            // Create text field to display the selected item to purchase
         itemLabel = new JLabel("Item Selected: ");
         inputPanel.add(itemLabel);
         itemTextArea   = new JTextArea("");
@@ -136,18 +136,17 @@ public class TestVendingView extends JFrame {
         itemTextArea.setEditable(false);
         inputPanel.add(itemTextArea);
 
-
-        // Create panel to separate text areas from number buttons
+            // Create panel to separate text areas from number buttons
         blankPanel1 = new JPanel();
         blankPanel1.setPreferredSize(new Dimension(230, 20));
         inputPanel.add(blankPanel1);
 
-        // Create panel to hold number buttons
+            // Create panel to hold number buttons
         numButtonPanel = new JPanel();
         numButtonPanel.setPreferredSize(new Dimension(230, 200));
         numButtonPanel.setLayout(new GridLayout(4, 3, 10, 10));
 
-        // Create number buttons
+            // Create number buttons
         button1 = new JButton("1");
         button2 = new JButton("2");
         button3 = new JButton("3");
@@ -158,8 +157,10 @@ public class TestVendingView extends JFrame {
         button8 = new JButton("8");
         button9 = new JButton("9");
         button0 = new JButton("0");
+
         addButton = new JButton("Add");
         viewButton = new JButton("View");
+
         button1.setFocusable(false);
         button2.setFocusable(false);
         button3.setFocusable(false);
@@ -172,6 +173,7 @@ public class TestVendingView extends JFrame {
         button0.setFocusable(false);
         addButton.setFocusable(false);
         viewButton.setFocusable(false);
+
         numButtonPanel.add(button1);
         numButtonPanel.add(button2);
         numButtonPanel.add(button3);
@@ -184,20 +186,20 @@ public class TestVendingView extends JFrame {
         numButtonPanel.add(button0);
         numButtonPanel.add(addButton);
         numButtonPanel.add(viewButton);
+
         inputPanel.add(numButtonPanel);
 
-        // Create panel to separate the number and confirmation buttons buttons
+            // Create panel to separate the number and confirmation buttons buttons
         blankPanel2 = new JPanel();
         blankPanel2.setPreferredSize(new Dimension(230, 20));
         inputPanel.add(blankPanel2);
 
-
-        // Create panel to hold Clear, Enter, and Cancel Buttons
+            // Create panel to hold Clear, Enter, and Cancel Buttons
         confirmPanel = new JPanel();
         confirmPanel.setPreferredSize(new Dimension(230, 50));
         confirmPanel.setLayout(new GridLayout(1, 3, 5, 5));
 
-        // Create confirmation buttons
+            // Create confirmation buttons
         clearButton = new JButton("Clear");
         enterButton = new JButton("Enter");
         cancelButton = new JButton("Cancel");
@@ -209,53 +211,52 @@ public class TestVendingView extends JFrame {
         confirmPanel.add(cancelButton);
         inputPanel.add(confirmPanel);
 
-        // Create panel to hold customer's money section
+            // Create panel to hold customer's money section
         moneyPanel = new JPanel();
         moneyPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
         moneyPanel.setPreferredSize(new Dimension(645, 95));
 
-        // Create panel to hold enterMoneyLabel
+            // Create panel to hold enterMoneyLabel
         insertMoneyPanel = new JPanel();
         insertMoneyPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
         insertMoneyPanel.setPreferredSize(new Dimension(645, 25));
 
-        // Create the label
+            // Create the label
         insertMoneyLabel = new JLabel("Insert money (PHP): ");
         insertMoneyPanel.add(insertMoneyLabel);
-        // Create panel to hold money denomination buttons
+
+            // Create panel to hold money denomination buttons
         moneyButtonsPanel = new JPanel();
         moneyButtonsPanel.setLayout(new GridLayout(1, 4, 10, 0));
         moneyButtonsPanel.setPreferredSize(new Dimension(645, 55));
 
-        // Create buttons for each denomination
+            // Create buttons for each denomination
         coin20Button = new JButton("20");
         coin10Button = new JButton("10");
         coin5Button = new JButton("5");
         coin1Button = new JButton("1");
+
         coin20Button.setFocusable(false);
         coin10Button.setFocusable(false);
         coin5Button.setFocusable(false);
         coin1Button.setFocusable(false);
 
-        // Add buttons to moneyBtsPanel
+            // Add buttons to moneyBtsPanel
         moneyButtonsPanel.add(coin20Button);
         moneyButtonsPanel.add(coin10Button);
         moneyButtonsPanel.add(coin5Button);
         moneyButtonsPanel.add(coin1Button);
 
-        // Add components to moneyPanel
+            // Add components to moneyPanel
         moneyPanel.add(insertMoneyPanel);
         moneyPanel.add(moneyButtonsPanel, BorderLayout.CENTER);
 
-
-        // add panels to frame
         add(vmNamePanel);
         add(slotsPanel);
         add(inputPanel);
         add(moneyPanel);
 
-        // display the frame
-        setLocationRelativeTo(null); // Center the frame on the screen
+        setLocationRelativeTo(null);
         setVisible(true);
     }
 
